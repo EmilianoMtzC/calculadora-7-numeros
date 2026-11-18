@@ -81,9 +81,6 @@ Si dejas un campo vacío o escribes algo que no es un número, aparece un diálo
 | `styles.qss` | Estilos y colores de los temas claro y oscuro |
 | `fuentes/` | Tipografía Google Sans y su licencia (OFL) |
 | `test_logica.py` | Pruebas automáticas de la lógica |
-| `build.sh`, `build.bat` | Generan el ejecutable con PyInstaller |
-| `build-rpm.sh`, `packaging/calculadora7.spec` | Generan el paquete `.rpm` (Fedora) dentro de un contenedor |
-| `.github/workflows/build-exe.yml` | Compila el `.exe` y el instalador en GitHub Actions |
 | `installer/instalador.iss` | Asistente de instalación para Windows (Inno Setup) |
 
 ## Pruebas
@@ -95,16 +92,11 @@ python -m pytest test_logica.py
 
 ## Instalar en Windows
 
-El instalador ya está compilado. Descarga `Instalador_Calculadora7.exe` de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) y ejecútalo. El asistente permite elegir la carpeta de instalación y crear un icono en el escritorio.
-
-### Recompilar el instalador (solo desarrolladores)
-
-- **Desde Windows:** ejecuta `build.bat` (crea `dist\Calculadora7\Calculadora7.exe`), luego abre `installer\instalador.iss` con [Inno Setup 6](https://jrsoftware.org/isinfo.php) y pulsa **Compile**. El resultado queda en `installer\Output\`.
-- **Desde cualquier sistema:** el workflow de GitHub Actions compila todo en Windows. Al subir una etiqueta `v*` adjunta el instalador al release automáticamente; también puedes lanzarlo a mano en **Actions → Compilar .exe → Run workflow**.
+Descarga `Instalador_Calculadora7.exe` de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) y ejecútalo. El asistente permite elegir la carpeta de instalación y crear un icono en el escritorio.
 
 ## Instalar el .rpm (Fedora)
 
-El paquete ya está compilado. Descárgalo de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) e instálalo:
+Descárgalo de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) e instálalo:
 
 ```bash
 sudo dnf install ./calculadora7-1.0-1.fc44.x86_64.rpm      # Fedora Workstation
@@ -112,13 +104,3 @@ rpm-ostree install ./calculadora7-1.0-1.fc44.x86_64.rpm    # Silverblue / Bazzit
 ```
 
 Se instala en `/opt/calculadora7`, con el comando `calculadora7` y una entrada en el menú de aplicaciones.
-
-### Recompilar el .rpm (solo desarrolladores)
-
-Requiere `podman`; el script compila dentro de un contenedor Fedora y deja el paquete en `dist-rpm/`:
-
-```bash
-./build-rpm.sh
-```
-
-En Linux y macOS, `build.sh` genera el ejecutable de esa plataforma sin empaquetar.

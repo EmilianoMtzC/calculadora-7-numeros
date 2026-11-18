@@ -110,21 +110,23 @@ PyInstaller no compila de forma cruzada, así que desde Linux o macOS usa el wor
 
 También se ejecuta al subir una etiqueta `v*`.
 
-## Generar el paquete .rpm (Fedora)
+## Instalar el .rpm (Fedora)
 
-Requiere `podman`. El script compila dentro de un contenedor Fedora, por lo que no necesitas `rpmbuild` en tu equipo:
+El paquete ya está compilado. Descárgalo de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) e instálalo:
+
+```bash
+sudo dnf install ./calculadora7-1.0-1.fc44.x86_64.rpm      # Fedora Workstation
+rpm-ostree install ./calculadora7-1.0-1.fc44.x86_64.rpm    # Silverblue / Bazzite (requiere reiniciar)
+```
+
+Se instala en `/opt/calculadora7`, con el comando `calculadora7` y una entrada en el menú de aplicaciones.
+
+### Recompilar el .rpm (solo desarrolladores)
+
+Requiere `podman`; el script compila dentro de un contenedor Fedora y deja el paquete en `dist-rpm/`:
 
 ```bash
 ./build-rpm.sh
 ```
-
-El paquete queda en `dist-rpm/calculadora7-1.0-1.fc44.x86_64.rpm`. Instálalo con:
-
-```bash
-sudo dnf install dist-rpm/calculadora7-*.rpm      # Fedora Workstation
-rpm-ostree install dist-rpm/calculadora7-*.rpm    # Silverblue / Bazzite (requiere reiniciar)
-```
-
-Se instala en `/opt/calculadora7`, con el comando `calculadora7` y una entrada en el menú de aplicaciones.
 
 En Linux y macOS, `build.sh` genera el ejecutable de esa plataforma sin empaquetar.

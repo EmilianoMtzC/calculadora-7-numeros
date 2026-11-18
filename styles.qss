@@ -1,0 +1,133 @@
+/* Material Design (Google). Los colores con prefijo de dólar los define
+   app.py según el tema claro u oscuro del sistema. */
+
+QWidget {
+    background-color: $fondo;
+    color: $texto;
+    font-family: "Google Sans", "Roboto", "Segoe UI", "Noto Sans", sans-serif;
+    font-size: 14px;
+}
+
+QLabel {
+    background: transparent;
+}
+
+QLabel#titulo {
+    font-size: 24px;
+    font-weight: 500;
+    color: $texto;
+}
+
+QLabel#descripcion {
+    color: $secundario;
+}
+
+QLabel#seccion {
+    color: $secundario;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Tarjetas */
+QFrame#tarjeta {
+    background-color: $superficie;
+    border: 1px solid $borde;
+    border-radius: 12px;
+}
+QFrame#tarjeta QLabel {
+    background: transparent;
+}
+
+/* Campos de texto (outlined) */
+QLineEdit {
+    background-color: $superficie;
+    border: 1px solid $borde;
+    border-radius: 6px;
+    padding: 8px 12px;
+    selection-background-color: $tonal_hover;
+    selection-color: $texto;
+}
+QLineEdit:hover {
+    border: 1px solid $secundario;
+}
+QLineEdit:focus {
+    border: 2px solid $primario;
+    padding: 7px 11px;
+}
+
+/* Botones de operación (tonal) */
+QPushButton {
+    background-color: $tonal;
+    color: $tonal_texto;
+    border: none;
+    border-radius: 18px;
+    padding: 9px 20px;
+    font-weight: 500;
+    text-align: left;
+}
+QPushButton:hover {
+    background-color: $tonal_hover;
+}
+QPushButton:pressed {
+    background-color: $tonal_press;
+}
+QPushButton:focus {
+    outline: none;
+    border: 2px solid $primario;
+}
+
+/* Botón secundario (texto) */
+QPushButton#limpiar {
+    background-color: transparent;
+    color: $secundario;
+    border: 1px solid $borde;
+}
+QPushButton#limpiar:hover {
+    background-color: $hover_neutro;
+}
+QPushButton#limpiar:pressed {
+    background-color: $press_neutro;
+}
+
+/* Resultado */
+QLabel#resultado {
+    color: $texto;
+    font-size: 16px;
+}
+QLabel#resultado[vacio="true"] {
+    color: $secundario;
+    font-size: 14px;
+}
+
+/* Diálogo de error */
+QFrame#dialogo {
+    background-color: $superficie;
+    border: 1px solid $borde;
+    border-radius: 28px;
+}
+QFrame#dialogo QLabel {
+    background: transparent;
+}
+QLabel#dialogo_titulo {
+    font-size: 22px;
+    font-weight: 500;
+    color: $texto;
+}
+QLabel#dialogo_mensaje {
+    font-size: 14px;
+    color: $secundario;
+}
+QPushButton#aceptar {
+    background-color: transparent;
+    color: $primario;
+    border: none;
+    text-align: center;
+    padding: 9px 16px;
+}
+QPushButton#aceptar:hover {
+    background-color: $tonal;
+}
+QPushButton#aceptar:pressed {
+    background-color: $tonal_hover;
+}

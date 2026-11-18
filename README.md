@@ -93,22 +93,14 @@ pip install pytest
 python -m pytest test_logica.py
 ```
 
-## Generar el ejecutable e instalador (Windows)
+## Instalar en Windows
 
-### Desde Windows
+El instalador ya está compilado. Descarga `Instalador_Calculadora7.exe` de la [página de releases](https://github.com/EmilianoMtzC/calculadora-7-numeros/releases/latest) y ejecútalo. El asistente permite elegir la carpeta de instalación y crear un icono en el escritorio.
 
-1. Ejecuta `build.bat`. Crea `dist\Calculadora7\Calculadora7.exe`.
-2. Instala [Inno Setup 6](https://jrsoftware.org/isinfo.php), abre `installer\instalador.iss` y pulsa **Compile**.
-3. El instalador queda en `installer\Output\Instalador_Calculadora7.exe`. Su asistente permite elegir la carpeta de instalación y crear un icono en el escritorio.
+### Recompilar el instalador (solo desarrolladores)
 
-### Desde cualquier sistema (GitHub Actions)
-
-PyInstaller no compila de forma cruzada, así que desde Linux o macOS usa el workflow:
-
-1. En GitHub abre **Actions → Compilar .exe → Run workflow**.
-2. Al terminar, descarga el artefacto `Calculadora7-windows`. Incluye `Calculadora7.exe` con su carpeta y `Instalador_Calculadora7.exe`.
-
-También se ejecuta al subir una etiqueta `v*`.
+- **Desde Windows:** ejecuta `build.bat` (crea `dist\Calculadora7\Calculadora7.exe`), luego abre `installer\instalador.iss` con [Inno Setup 6](https://jrsoftware.org/isinfo.php) y pulsa **Compile**. El resultado queda en `installer\Output\`.
+- **Desde cualquier sistema:** el workflow de GitHub Actions compila todo en Windows. Al subir una etiqueta `v*` adjunta el instalador al release automáticamente; también puedes lanzarlo a mano en **Actions → Compilar .exe → Run workflow**.
 
 ## Instalar el .rpm (Fedora)
 

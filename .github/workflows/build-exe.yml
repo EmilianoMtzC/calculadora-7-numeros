@@ -5,6 +5,9 @@ on:
   push:
     tags: ["v*"]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
@@ -27,3 +30,9 @@ jobs:
           path: |
             dist/Calculadora7/
             installer/Output/Instalador_Calculadora7.exe
+      - name: Adjuntar instalador al release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: bash
+        run: gh release upload "${{ github.ref_name }}" installer/Output/Instalador_Calculadora7.exe --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}

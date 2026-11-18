@@ -82,6 +82,8 @@ Si dejas un campo vacío o escribes algo que no es un número, aparece un diálo
 | `fuentes/` | Tipografía Google Sans y su licencia (OFL) |
 | `test_logica.py` | Pruebas automáticas de la lógica |
 | `build.sh`, `build.bat` | Generan el ejecutable con PyInstaller |
+| `build-rpm.sh`, `packaging/calculadora7.spec` | Generan el paquete `.rpm` (Fedora) dentro de un contenedor |
+| `.github/workflows/build-exe.yml` | Compila el `.exe` y el instalador en GitHub Actions |
 | `installer/instalador.iss` | Asistente de instalación para Windows (Inno Setup) |
 
 ## Pruebas
@@ -93,8 +95,36 @@ python -m pytest test_logica.py
 
 ## Generar el ejecutable e instalador (Windows)
 
+### Desde Windows
+
 1. Ejecuta `build.bat`. Crea `dist\Calculadora7\Calculadora7.exe`.
 2. Instala [Inno Setup 6](https://jrsoftware.org/isinfo.php), abre `installer\instalador.iss` y pulsa **Compile**.
 3. El instalador queda en `installer\Output\Instalador_Calculadora7.exe`. Su asistente permite elegir la carpeta de instalación y crear un icono en el escritorio.
 
-En Linux y macOS, `build.sh` genera el ejecutable de esa plataforma.
+### Desde cualquier sistema (GitHub Actions)
+
+PyInstaller no compila de forma cruzada, así que desde Linux o macOS usa el workflow:
+
+1. En GitHub abre **Actions → Compilar .exe → Run workflow**.
+2. Al terminar, descarga el artefacto `Calculadora7-windows`. Incluye `Calculadora7.exe` con su carpeta y `Instalador_Calculadora7.exe`.
+
+También se ejecuta al subir una etiqueta `v*`.
+
+## Generar el paquete .rpm (Fedora)
+
+Requiere `podman`. El script compila dentro de un contenedor Fedora, por lo que no necesitas `rpmbuild` en tu equipo:
+
+```bash
+./build-rpm.sh
+```
+
+El paquete queda en `dist-rpm/calculadora7-1.0-1.fc44.x86_64.rpm`. Instálalo con:
+
+```bash
+sudo dnf install dist-rpm/calculadora7-*.rpm      # Fedora Workstation
+rpm-ostree install dist-rpm/calculadora7-*.rpm    # Silverblue / Bazzite (requiere reiniciar)
+```
+
+Se instala en `/opt/calculadora7`, con el comando `calculadora7` y una entrada en el menú de aplicaciones.
+
+En Linux y macOS, `build.sh` genera el ejecutable de esa plataforma sin empaquetar.
